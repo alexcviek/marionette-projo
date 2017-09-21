@@ -1,8 +1,8 @@
-ContactManager.module('ContactsApp', function(ContactsApp, ContactManager, Backbone, Marionette, $, _){
+ContactManager.module("ContactsApp", function(ContactsApp, ContactManager, Backbone, Marionette, $, _){
   ContactsApp.Router = Marionette.AppRouter.extend({
     appRoutes: {
-      'contacts': 'listContacts',
-      'contacts/:id': 'showContact'
+      "contacts": "listContacts",
+      "contacts/:id": "showContact"
     }
   });
 
@@ -16,17 +16,17 @@ ContactManager.module('ContactsApp', function(ContactsApp, ContactManager, Backb
     }
   };
 
-  ContactManager.on('contacts:list', function(){
-    ContactManager.navigate('contacts');
+  ContactManager.on("contacts:list", function(){
+    ContactManager.navigate("contacts");
     API.listContacts();
   });
 
-  ContactManager.on('contact:show', function(id){
-    ContactManager.navigate('contacts/' + id);
+  ContactManager.on("contact:show", function(id){
+    ContactManager.navigate("contacts/" + id);
     API.showContact(id);
   });
 
-  ContactsApp.on('start', function(){
+  ContactsApp.on("start", function(){
     new ContactsApp.Router({
       controller: API
     });
