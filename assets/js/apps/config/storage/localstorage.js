@@ -1,15 +1,15 @@
-ContactManager.module("Entities", function(Entities, ContactManager, Backbone, Marionette, $, _){
+ContactManager.module('Entities', function(Entities, ContactManager, Backbone, Marionette, $, _){
   var findStorageKey = function(entity){
     // use a model's urlRoot value
     if(entity.urlRoot){
-      return _.result(entity, "urlRoot");
+      return _.result(entity, 'urlRoot');
     }
     // use a collection's url value
     if(entity.url){
-      return _.result(entity, "url");
+      return _.result(entity, 'url');
     }
 
-    throw new Error("Unable to determine storage key");
+    throw new Error('Unable to determine storage key');
   };
 
   var storageCache = {};
@@ -29,10 +29,10 @@ ContactManager.module("Entities", function(Entities, ContactManager, Backbone, M
   };
 
   var getEntity = function(constructorString){
-    var bits = constructorString.split("."),
+    var sections = constructorString.split('.'),
         entity = window;
-    _.each(bits, function(bit){
-      entity = entity[bit];
+    _.each(sections, function(section){
+      entity = entity[section];
     });
     return entity;
   };
@@ -46,6 +46,6 @@ ContactManager.module("Entities", function(Entities, ContactManager, Backbone, M
     }
     NewConstructor.prototype = OldConstructor.prototype;
 
-    eval(constructorString + " = NewConstructor;");
+    eval(constructorString + ' = NewConstructor;');
   };
 });
