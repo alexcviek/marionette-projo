@@ -3,6 +3,16 @@ ContactManager.module('Common.Views', function(Views, ContactManager,
   Views.Loading = Marionette.ItemView.extend({
     template: '#loading-view',
 
+    title: 'Loading data',
+    message: 'please wait, data is loading',
+
+    serializeData: function(){
+      return {
+        title: Marionette.getOption(this, 'title'),
+        message: Marionette.getOption(this, 'message')
+      };
+    },
+
     onShow: function(){
       var opts = {
         lines: 13, // The number of lines to dra
@@ -20,6 +30,6 @@ ContactManager.module('Common.Views', function(Views, ContactManager,
         left: 'auto' // Left position relative to parent in px
       };
       $('#spinner').spin(opts);
-    } 
+    }
   });
 });
